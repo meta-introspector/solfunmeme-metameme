@@ -1,0 +1,9 @@
+pub mod instrumented_run;
+pub mod generate_stanza;
+pub mod create_quine;
+pub mod evolve_stanza;
+pub mod generate_nft_collection;
+pub mod analyze_emoji;
+pub mod create_universe;
+pub mod launch_repl;
+pub mod show_stats;

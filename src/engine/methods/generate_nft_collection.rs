@@ -1,8 +1,10 @@
 use crate::{engine::MetaMemeEngine, NFTMetadata};
 use anyhow::Result;
 use log::info;
+use ragit_instrumentation_macros::instrument_function;
 
 impl MetaMemeEngine {
+    #[instrument_function]
     pub async fn generate_nft_collection(&mut self, count: u32) -> Result<Vec<NFTMetadata>> {
         info!("🎨 Generating NFT collection with {} items", count);
         

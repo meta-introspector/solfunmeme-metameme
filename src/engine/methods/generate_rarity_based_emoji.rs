@@ -1,7 +1,9 @@
 use crate::engine::MetaMemeEngine;
 use rand::Rng;
+use ragit_instrumentation_macros::instrument_function;
 
 impl MetaMemeEngine {
+    #[instrument_function]
     pub(super) fn generate_rarity_based_emoji(&self, token_id: u32, total_count: u32) -> String {
         let mut rng = rand::thread_rng();
         

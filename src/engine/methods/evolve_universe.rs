@@ -2,8 +2,10 @@ use crate::{engine::MetaMemeEngine, engine::EvolutionResult};
 use anyhow::Result;
 use log::{info, debug};
 use rand::Rng;
+use ragit_instrumentation_macros::instrument_function;
 
 impl MetaMemeEngine {
+    #[instrument_function]
     pub async fn evolve_universe(&mut self, generations: u32, mutation_rate: f64) -> Result<EvolutionResult> {
         info!("🧬 Evolving universe for {} generations", generations);
         

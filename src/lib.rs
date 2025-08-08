@@ -53,4 +53,5 @@ pub use emoji_semantics::{EmojiSemantics, EmojiSemantic, RarityTier, CombinatorT
 pub use stanza_universe::{StanzaUniverse, Stanza};
 
 pub mod engine;
+pub mod commands;
 pub use engine::*;

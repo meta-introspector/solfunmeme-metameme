@@ -1,8 +1,10 @@
 use crate::{engine::MetaMemeEngine, engine::QuineResult};
 use anyhow::Result;
 use log::debug;
+use ragit_instrumentation_macros::instrument_function;
 
 impl MetaMemeEngine {
+    #[instrument_function]
     pub async fn create_quine(&mut self, seed: &str) -> Result<QuineResult> {
         debug!("🌀 Creating quine with seed: {}", seed);
         

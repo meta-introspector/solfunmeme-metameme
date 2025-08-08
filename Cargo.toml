@@ -17,6 +17,8 @@ lambda-calculus-core = { path = "crates/lambda-calculus-core" }
 emoji-semantics = { path = "crates/emoji-semantics" }
 stanza-universe = { path = "crates/stanza-universe" }
 minimal-runtime-server = { path = "crates/minimal-runtime-server" }
+ragit-memory-monitor = { path = "../../crates/layer1_physical/ragit-memory-monitor" }
+ragit-instrumentation-macros = { path = "../../crates/rrust_kontekst_macros/ragit-instrumentation-macros" }
 
 # External dependencies
 serde = { workspace = true }

@@ -1,6 +1,9 @@
 use crate::engine::MetaMemeEngine;
 use log::info;
 
+use crate::engine::MetaMemeEngine;
+use log::info;
+
 impl MetaMemeEngine {
     /// Create a new MetaMeme engine with all components initialized
     pub fn new() -> Self {

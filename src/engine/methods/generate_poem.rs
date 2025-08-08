@@ -2,6 +2,10 @@ use crate::{engine::MetaMemeEngine, engine::GeneratedPoem};
 use anyhow::Result;
 use log::debug;
 
+use crate::{engine::MetaMemeEngine, engine::GeneratedPoem};
+use anyhow::Result;
+use log::debug;
+
 impl MetaMemeEngine {
     pub async fn generate_poem(&mut self, emoji_sequence: &str) -> Result<GeneratedPoem> {
         debug!("🎭 Generating poem from: {}", emoji_sequence);

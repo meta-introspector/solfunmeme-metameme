@@ -1,0 +1,14 @@
+[package]
+name = "stanza-universe"
+version = "0.1.0"
+edition = "2021"
+description = "📜 Stanza Universe: Self-Replicating Poetry Engine for SOLFUNMEME MetaMeme"
+
+[dependencies]
+lambda-calculus-core = { path = "../lambda-calculus-core" }
+emoji-semantics = { path = "../emoji-semantics" }
+serde = { workspace = true }
+serde_json = { workspace = true }
+anyhow = { workspace = true }
+log = { workspace = true }
+rand = { workspace = true }

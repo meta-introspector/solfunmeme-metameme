@@ -1,0 +1,13 @@
+[package]
+name = "emoji-semantics"
+version = "0.1.0"
+edition = "2021"
+description = "🎭 Emoji Semantic Engine for SOLFUNMEME - Encoding Poetry as Emojis"
+
+[dependencies]
+lambda-calculus-core = { path = "../lambda-calculus-core" }
+serde = { workspace = true }
+serde_json = { workspace = true }
+anyhow = { workspace = true }
+log = { workspace = true }
+rand = { workspace = true }

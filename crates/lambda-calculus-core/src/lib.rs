@@ -12,11 +12,9 @@
 //! - **Poetry Generation**: Lambda calculus that creates beautiful verse
 
 use std::collections::HashMap;
-use std::rc::Rc;
 use std::fmt;
 
-use serde::{Serialize, Deserialize};
-use anyhow::{Result, anyhow};
+use anyhow::Result;
 use log::{debug, info, warn};
 
 /// 🌀 The fundamental expression type for our lambda calculus poetry engine
@@ -161,6 +159,7 @@ pub struct ReductionTrace {
 }
 
 /// 🧠 The Lambda Calculus Engine - where poetry becomes computation
+#[derive(Clone)]
 pub struct LambdaEngine {
     /// Maximum reduction steps to prevent infinite loops
     pub max_steps: usize,
@@ -524,7 +523,7 @@ mod tests {
         match muse {
             Expr::Muse(name, resonance) => {
                 assert_eq!(name, "Poetry");
-                assert_eq!(resonance, 0.95);
+                assert_eq!(resonance, 950);
             }
             _ => panic!("Expected Muse"),
         }

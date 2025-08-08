@@ -14,10 +14,8 @@ use axum::{
     Router,
 };
 use tower::ServiceBuilder;
-use tower_http::{
-    cors::{CorsLayer, Any},
-    fs::ServeDir,
-};
+use tower_http::cors::{CorsLayer, Any};
+use tower_http::services::ServeDir;
 use serde::{Deserialize, Serialize};
 use serde_json::json;
 use log::{info, error, warn};

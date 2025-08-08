@@ -8,6 +8,7 @@ use std::path::PathBuf;
 use clap::{Parser, Subcommand};
 use anyhow::Result;
 use log::{info, error};
+use rand::Rng;
 
 use lambda_calculus_core::{Expr, LambdaEngine};
 use emoji_semantics::EmojiSemantics;

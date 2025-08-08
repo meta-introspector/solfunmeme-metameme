@@ -10,7 +10,7 @@ use anyhow::{Result, anyhow};
 use log::{debug, info};
 use rand::Rng;
 
-use lambda_calculus_core::{Expr, LambdaEngine};
+use lambda_calculus_core::LambdaEngine;
 use emoji_semantics::{EmojiSemantics, RarityTier};
 
 /// 🎭 A single stanza in our poetic universe

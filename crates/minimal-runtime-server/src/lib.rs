@@ -17,12 +17,12 @@ use std::collections::HashMap;
 use std::sync::{Arc, RwLock};
 use serde::{Serialize, Deserialize};
 use anyhow::Result;
-use log::{info, debug, error};
+use log::{info, debug};
 use uuid::Uuid;
 
-use lambda_calculus_core::{Expr, LambdaEngine, ReductionTrace};
+use lambda_calculus_core::{Expr, LambdaEngine};
 use emoji_semantics::{EmojiSemantics, NFTMetadata, RarityTier};
-use stanza_universe::{StanzaUniverse, Stanza};
+use stanza_universe::{StanzaUniverse};
 
 /// 🌟 The main runtime server state
 pub struct MetaMemeRuntime {

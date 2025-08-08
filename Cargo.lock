@@ -936,6 +936,7 @@ dependencies = [
  "lambda-calculus-core",
  "log",
  "minimal-runtime-server",
+ "rand",
  "serde",
  "serde_json",
  "stanza-universe",

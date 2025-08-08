@@ -13,6 +13,7 @@ members = [
     "crates/lambda-calculus-core",
     "crates/emoji-semantics", 
     "crates/stanza-universe",
+    "crates/minimal-runtime-server",
 ]
 
 [workspace.dependencies]
@@ -27,11 +28,19 @@ clap = { version = "4.0", features = ["derive"] }
 rand = "0.8"
 tokio = { version = "1.0", features = ["full"] }
 
+# Web server (for minimal runtime server)
+axum = "0.7"
+tower = "0.4"
+tower-http = { version = "0.5", features = ["cors", "fs"] }
+hyper = { version = "1.0", features = ["full"] }
+uuid = { version = "1.0", features = ["v4"] }
+
 [dependencies]
 # Core workspace dependencies
 lambda-calculus-core = { path = "crates/lambda-calculus-core" }
 emoji-semantics = { path = "crates/emoji-semantics" }
 stanza-universe = { path = "crates/stanza-universe" }
+minimal-runtime-server = { path = "crates/minimal-runtime-server" }
 
 # External dependencies
 serde = { workspace = true }
@@ -42,12 +51,23 @@ tokio = { workspace = true }
 log = { workspace = true }
 env_logger = { workspace = true }
 
+# Server dependencies
+axum = { workspace = true }
+tower = { workspace = true }
+tower-http = { workspace = true }
+hyper = { workspace = true }
+uuid = { workspace = true }
+
 [features]
 default = []
 
 [[bin]]
 name = "solfunmeme"
 path = "src/bin/main.rs"
+
+[[bin]]
+name = "solfunmeme-server"
+path = "crates/minimal-runtime-server/src/bin/server.rs"
 
 [profile.release]
 overflow-checks = true

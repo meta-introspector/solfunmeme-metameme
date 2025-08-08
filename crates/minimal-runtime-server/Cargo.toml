@@ -1,0 +1,45 @@
+[package]
+name = "minimal-runtime-server"
+version = "0.1.0"
+edition = "2021"
+description = "🌐 Minimal Runtime Server for SOLFUNMEME MetaMeme - Blockchain-Free Poetry Engine"
+
+[dependencies]
+# Core SOLFUNMEME components
+lambda-calculus-core = { path = "../lambda-calculus-core" }
+emoji-semantics = { path = "../emoji-semantics" }
+stanza-universe = { path = "../stanza-universe" }
+
+# Web server
+axum = { version = "0.7", optional = true }
+tower = { version = "0.4", optional = true }
+tower-http = { version = "0.5", features = ["cors", "fs"], optional = true }
+hyper = { version = "1.0", features = ["full"], optional = true }
+
+# Async runtime
+tokio = { workspace = true, features = ["full"] }
+
+# Serialization
+serde = { workspace = true }
+serde_json = { workspace = true }
+
+# Utilities
+anyhow = { workspace = true }
+log = { workspace = true }
+env_logger = { workspace = true }
+uuid = { version = "1.0", features = ["v4"] }
+rand = { workspace = true }
+
+# Optional WebAssembly support
+wasm-bindgen = { version = "0.2", optional = true }
+web-sys = { version = "0.3", optional = true }
+js-sys = { version = "0.3", optional = true }
+
+[features]
+default = ["server"]
+server = ["axum", "tower", "tower-http", "hyper"]
+wasm = ["wasm-bindgen", "web-sys", "js-sys"]
+
+[[bin]]
+name = "solfunmeme-server"
+path = "src/bin/server.rs"

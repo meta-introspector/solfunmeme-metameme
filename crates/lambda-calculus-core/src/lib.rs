@@ -152,9 +152,9 @@ impl fmt::Display for Expr {
 }
 
 /// 🔄 Reduction trace for debugging and visualization
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone)]
 pub struct ReductionTrace {
-    pub steps: Vec<Expr>,
+    pub steps: Vec<String>, // Store as strings instead of Expr
     pub step_count: usize,
     pub final_form: Expr,
     pub is_normal_form: bool,
@@ -225,8 +225,11 @@ impl LambdaEngine {
             warn!("⚠️ Maximum steps reached, may not be in normal form");
         }
         
+        // Convert trace to strings
+        let string_steps: Vec<String> = self.trace.iter().map(|expr| format!("{}", expr)).collect();
+        
         Ok(ReductionTrace {
-            steps: self.trace.clone(),
+            steps: string_steps,
             step_count,
             final_form: current.clone(),
             is_normal_form: step_count < self.max_steps,
@@ -309,7 +312,8 @@ impl LambdaEngine {
                     
                     // Muse application - poetic computation
                     Expr::Muse(name, resonance) => {
-                        Ok(Some(Expr::muse(&format!("{}+{}", name, right), *resonance * 1.01)))
+                        let new_resonance = ((*resonance as f64 / 1000.0) * 1.01 * 1000.0) as u32;
+                        Ok(Some(Expr::muse(&format!("{}+{}", name, right), new_resonance as f64 / 1000.0)))
                     }
                     
                     // Quine application - self-replication
@@ -335,8 +339,10 @@ impl LambdaEngine {
             
             // Muse - can evolve
             Expr::Muse(name, resonance) => {
-                if *resonance < 1.0 {
-                    Ok(Some(Expr::muse(name, resonance + 0.001)))
+                let resonance_f64 = *resonance as f64 / 1000.0;
+                if resonance_f64 < 1.0 {
+                    let new_resonance = ((resonance_f64 + 0.001) * 1000.0) as u32;
+                    Ok(Some(Expr::Muse(name.clone(), new_resonance)))
                 } else {
                     Ok(None)
                 }
@@ -415,8 +421,10 @@ impl LambdaEngine {
         if rng.gen::<f64>() < mutation_rate {
             match expr {
                 Expr::Muse(name, resonance) => {
-                    let new_resonance = (resonance + rng.gen_range(-0.1..0.1)).clamp(0.0, 1.0);
-                    Ok(Expr::muse(name, new_resonance))
+                    let resonance_f64 = *resonance as f64 / 1000.0;
+                    let new_resonance_f64 = (resonance_f64 + rng.gen_range(-0.1..0.1)).clamp(0.0, 1.0);
+                    let new_resonance = (new_resonance_f64 * 1000.0) as u32;
+                    Ok(Expr::Muse(name.clone(), new_resonance))
                 }
                 
                 Expr::Sym(symbol) => {

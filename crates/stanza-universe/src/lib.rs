@@ -22,8 +22,8 @@ pub struct Stanza {
     pub text: String,
     /// Emoji encoding of the stanza
     pub emoji_sequence: String,
-    /// Lambda calculus expression
-    pub lambda_expr: Expr,
+    /// Lambda calculus expression (stored as string for serialization)
+    pub lambda_expr: String,
     /// Resonance score (0.0 - 1.0)
     pub resonance: f64,
     /// Rarity tier for NFT generation
@@ -127,7 +127,7 @@ impl StanzaUniverse {
             id,
             text: text.to_string(),
             emoji_sequence: emoji_sequence.to_string(),
-            lambda_expr,
+            lambda_expr: format!("{}", lambda_expr),
             resonance,
             rarity,
             program_id: None, // Will be set when deployed to Solana
@@ -175,8 +175,11 @@ impl StanzaUniverse {
             .ok_or_else(|| anyhow!("Parent stanza {} not found", parent_id))?
             .clone();
         
+        // Re-interpret the parent's emoji sequence to get the lambda expression
+        let (parent_expr, _) = self.emoji_engine.interpret_emoji_poem(&parent.emoji_sequence)?;
+        
         // Evolve the lambda expression
-        let evolved_expr = self.lambda_engine.evolve(&parent.lambda_expr, mutation_rate)?;
+        let evolved_expr = self.lambda_engine.evolve(&parent_expr, mutation_rate)?;
         
         // Convert back to emoji
         let new_emoji = self.emoji_engine.expr_to_emoji(&evolved_expr);

@@ -307,7 +307,7 @@ impl EmojiSemantics {
             lambda_expression: lambda_expr,
             reduced_expression: reduced_expr,
             resonance_score: resonance,
-            rarity_tier: rarity,
+            rarity_tier: rarity.clone(),
             reduction_steps: trace.step_count,
             attributes: self.generate_attributes(emoji_sequence, &rarity, resonance),
         })

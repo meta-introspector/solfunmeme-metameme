@@ -3,7 +3,7 @@ use lambda_calculus_core::Expr;
 use rand::Rng;
 
 impl MetaMemeEngine {
-    fn generate_poetic_text(&self, expr: &Expr, resonance: f64) -> String {
+    pub(super) fn generate_poetic_text(&self, expr: &Expr, resonance: f64) -> String {
         let base_verses = vec![
             "In the metaprotocol's dance, where lambda meets the light,\nThrough recursive dreams and combinatorial flight:",
             "Digital muses stir in silicon dreams,\nWhere poetry flows in data streams,",

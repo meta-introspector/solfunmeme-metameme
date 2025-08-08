@@ -2,7 +2,7 @@ use crate::engine::MetaMemeEngine;
 use rand::Rng;
 
 impl MetaMemeEngine {
-    fn generate_rarity_based_emoji(&self, token_id: u32, total_count: u32) -> String {
+    pub(super) fn generate_rarity_based_emoji(&self, token_id: u32, total_count: u32) -> String {
         let mut rng = rand::thread_rng();
         
         // Calculate rarity based on token position
